@@ -23,7 +23,12 @@ shinyUI(
       
       # Define the sidebar with one input
       sidebarPanel( width = 2,
-        selectInput('tag', 'Fish ID:', uniqueTags, selectize=FALSE, selected = '00088cc473', width = '80%'),
+        selectInput('tag', 'Fish ID:', uniqueTags, selectize=TRUE, selected = '00088cc473', width = '80%'),
+        hr(),
+        
+        checkboxInput(inputId = "facet",
+                      label = strong("Facet rivers for graph?"),
+                      value = FALSE),
         hr(),
 
         checkboxInput(inputId = "temperature",

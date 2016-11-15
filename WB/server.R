@@ -57,9 +57,9 @@ print(c("in RenderPlot",xMin(),xMax()))
     
     p <- selectedData() %>% arrange(detectionDate) %>%
       ggplot(aes(detectionDate,riverMeter)) +
-      geom_point(aes(color=river, size=sizeForGraph)) +
+      geom_point(aes(color=river, size=sizeForGraph, shape=species)) +
       scale_colour_manual( values = c("acoustic" = palette1[1],"portableAntenna" = palette1[4],"shock" = palette1[2],"stationaryAntenna" = palette1[3],
-                                      "west brook" = palette1[1],"wb obear" = palette1[2],"wb mitchell" = palette1[3],"wb jimmy" = palette1[4])) +
+                                      "west brook" = palette1[1],"wb obear" = palette1[2],"wb mitchell" = palette1[3],"wb jimmy" = palette1[5])) +
       scale_size( "Body size (mm)", guide = guide_legend(override.aes = list(colour = palette1[2]))) + #range = c(1, 8),
       geom_line(color="darkgrey") +
       
@@ -70,9 +70,14 @@ print(c("in RenderPlot",xMin(),xMax()))
       scale_y_continuous("River meter from bottom of study area") +
       
       theme_bw() +
-      theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
+      theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) 
 
     #p <- p+ geom_point(data=countsByDay, aes(date,riverMeter,color = log(n)), size=1) 
+    
+    if(input$facet) {
+      print(c("in facet",xMin(),xMax(),ranges$x,ranges$y))
+      p <- p + facet_wrap(~riverOrdered)
+    } 
     
     if(input$sampDate) {
       print(c("in sampDate",xMin(),xMax(),ranges$x,ranges$y))
