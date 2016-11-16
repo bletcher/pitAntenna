@@ -94,12 +94,12 @@ print(c("in RenderPlot",xMin(),xMax()))
 
     if(input$temperature) {
       print(c("in temp",xMin(),xMax(),ranges$x,ranges$y))
-      p <- p + geom_line( aes(date, daily_mean_temp * 10 - 220), color="grey", data=selectedDataEnv() ) 
+      p <- p + geom_line( aes(date, daily_mean_temp * 10 + 4050), color="grey", data=selectedDataEnv() ) 
     }
     
     if(input$flow) {
       print(c("in flow",xMin(),xMax(),ranges$x,ranges$y))
-      p <- p + geom_line( aes(date,qPredicted * 3 - 260), color="lightblue", data=selectedDataEnv() ) 
+      p <- p + geom_line( aes(date,qPredicted * 30 + 4050), color="lightblue", data=selectedDataEnv() ) 
     }
     
     if(input$ant != "none") {
